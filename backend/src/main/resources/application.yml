@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: energy-consumption-app
+  profiles:
+    default: dev
+  datasource:
+    url: jdbc:postgresql://db:5432/energy
+    username: postgres
+    password: postgres
+elering:
+  rest:
+    url: https://estfeed.elering.ee
+logging:
+  level:
+    org:
+      springframework:
+        security: INFO
+        web: INFO

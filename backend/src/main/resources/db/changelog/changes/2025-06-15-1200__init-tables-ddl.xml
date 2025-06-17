@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="init_customers" author="kent">
+        <sql>
+            CREATE TABLE customers
+            (
+                id            UUID PRIMARY KEY,
+                first_name    VARCHAR(255) NOT NULL,
+                last_name     VARCHAR(255) NOT NULL,
+                username      VARCHAR(255) NOT NULL UNIQUE,
+                password_hash VARCHAR(255) NOT NULL
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="init_metering_point" author="kent">
+        <sql>
+            CREATE TABLE metering_point
+            (
+                id          UUID PRIMARY KEY,
+                customer_id UUID         NOT NULL REFERENCES customers (id),
+                address     VARCHAR(255) NOT NULL
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="init_consumption" author="kent">
+        <sql>
+            CREATE TABLE consumption
+            (
+                id                UUID PRIMARY KEY,
+                metering_point_id UUID           NOT NULL REFERENCES metering_point (id),
+                amount            NUMERIC(12, 6) NOT NULL,
+                consumption_time  TIMESTAMP(0)   NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="idx_metering_point_customer_id" author="kent">
+        <sql>
+            CREATE INDEX idx_metering_point_customer_id ON metering_point (customer_id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="idx_consumption_metering_point_time" author="kent">
+        <sql>
+            CREATE INDEX idx_consumption_metering_point_time ON consumption (metering_point_id, consumption_time);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

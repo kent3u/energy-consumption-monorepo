@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="insert_sample_customers" author="kent" context="dev">
+        <sql>
+            INSERT INTO customers (id, first_name, last_name, username, password_hash)
+            VALUES ('d05b7740-0e33-47db-bc2d-46b3b980281e', 'Foo', 'Bar', 'foobar', '$2a$10$IxuTTTtmVZGRpBla0DDEF.aqs7cPnRATQko2yYCML9NyYp6yESHju'),
+                   ('371a9505-782c-4e38-a399-6ba66113b2a0', 'Jane', 'Doe', 'janedoe', '$2a$10$FGuegvyqh/mazYeXZhKqpeUyq0tmDm1t6lyWTuX21J58HXZxdld26');
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert_sample_metering_point" author="kent" context="dev">
+        <sql>
+            INSERT INTO metering_point (id, customer_id, address)
+            VALUES ('c0070962-7b7b-4de0-9064-a0684d6e7e22', 'd05b7740-0e33-47db-bc2d-46b3b980281e', '123 Main St'),
+                   ('b702655a-9b30-410a-bdab-102f0d597308', 'd05b7740-0e33-47db-bc2d-46b3b980281e', '456 Oak Ave');
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert_sample_consumption" author="kent" context="dev">
+        <sql>
+            INSERT INTO consumption(id, metering_point_id, amount, consumption_time)
+            VALUES ('ba3cd69d-7f7c-42ee-9852-167b02841a02', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '14.3552','2025-01-01 10:00:00'),
+                   ('778a8b3d-b3ee-4714-a167-1dede605c7d1', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '50.1241', '2025-01-02 14:00:00'),
+                   ('69c9412d-a933-400a-ae78-11a73511f860', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '4.12414', '2025-01-23 08:00:00'),
+                   ('c3f5b710-e8bd-44d3-bc71-cca2f530d8cb', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '124.02092', '2025-02-09 23:00:00'),
+                   ('0f5486c3-91d3-437f-89e4-1f1efc7838f7', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '12.12885', '2025-02-10 01:00:00'),
+                   ('1b229761-775f-4dc1-a242-72ae9292c155', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '66.00535', '2025-03-01 11:00:00'),
+                   ('1d25fc88-88c1-4a2a-a1d3-48604f302908', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '9.124145', '2025-04-01 10:00:00'),
+                   ('8d2b281a-6747-44e7-992d-bd45ebe3a81e', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '105.002', '2025-04-01 12:00:00'),
+                   ('72d89397-5ecb-487b-9caa-c9765bd7744a', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '90.12405', '2025-06-01 10:00:00'),
+                   ('1e1f7cb6-9f52-4690-82a1-5f6bfec0e94e', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '0.00124', '2025-06-01 11:00:00'),
+                   ('c9f37da0-07b7-4182-a84b-63bc24923362', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '11.12405', '2024-07-01 10:00:00'),
+                   ('c3adaa94-31ab-410a-9294-abb5066fbc84', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '14.004', '2024-08-01 01:00:00'),
+                   ('9c8c7aad-69e8-48ea-a999-a5d6ea371254', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '220.98401', '2024-08-01 12:00:00'),
+                   ('0df9641f-fb35-44f4-87a0-3e254a14565f', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '7.12', '2024-09-12 10:00:00'),
+                   ('26ff05b9-a122-4907-9903-dc60d69484c2', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '0.9004', '2024-09-13 10:00:00'),
+                   ('a4d58961-4a33-481d-902a-01ccc4574a0c', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '14.01', '2024-10-20 18:00:00'),
+                   ('f1f2baad-5962-4a73-a3df-ad36c0143357', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '1.905', '2024-12-25 11:00:00'),
+                   ('b5d4ce39-aaa4-4739-a08d-9d67bc591912', 'b702655a-9b30-410a-bdab-102f0d597308', '124.09414', '2025-01-25 11:00:00'),
+                   ('74d8f3a9-b2d2-4b4a-aafa-519facca6945', 'b702655a-9b30-410a-bdab-102f0d597308', '1.094', '2025-01-25 11:00:00'),
+                   ('aa2e9fe8-7455-43b3-b688-e44fa5c72948', 'b702655a-9b30-410a-bdab-102f0d597308', '24.6347', '2024-10-12 04:00:00'),
+                   ('343b4d85-ff3f-47cd-963b-11c1c66fa540', 'b702655a-9b30-410a-bdab-102f0d597308', '169.02352', '2024-11-11 11:00:00'),
+                   ('2accb7e5-fbd6-4e37-b845-4492f039c1c5', 'b702655a-9b30-410a-bdab-102f0d597308', '96.23244', '2024-12-01 01:00:00'),
+                   ('d93e09c9-13d9-4e10-9163-78edf95751d1', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '8.4512', '2025-06-15 09:00:00'),
+                   ('c84168f9-74ac-48da-bdda-36cd616e39ae', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '18.2204', '2025-06-15 18:00:00'),
+                   ('0e0dd477-d6dc-430c-b980-f595bd480485', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '32.0011', '2025-06-16 07:00:00'),
+                   ('e6f9e7fc-8547-4fc7-a58b-8c0cb6a21466', 'b702655a-9b30-410a-bdab-102f0d597308', '10.512', '2025-03-14 06:00:00'),
+                   ('d0f82f9a-43b1-4f44-8e3b-8f4660ac409b', 'b702655a-9b30-410a-bdab-102f0d597308', '58.3302', '2024-06-14 22:00:00'),
+                   ('5dfd8dfe-5e72-4902-9b3c-71d1970a26dc', 'b702655a-9b30-410a-bdab-102f0d597308', '4.2481', '2024-06-15 05:00:00'),
+                   ('1dc9e7e8-dc23-4905-9621-2ec88ef5cd76', 'b702655a-9b30-410a-bdab-102f0d597308', '133.9145', '2025-05-15 20:00:00'),
+                   ('7f4da4a0-9f32-407a-a28f-8d9e4ecf35a7', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '90.9987', '2025-05-16 02:00:00'),
+                   ('fa5bc80e-5806-43a4-92cb-178a85dcaaec', 'b702655a-9b30-410a-bdab-102f0d597308', '19.7653', '2024-02-16 12:00:00'),
+                   ('5ac561c7-27b0-4ded-9187-4de37b4b7832', 'c0070962-7b7b-4de0-9064-a0684d6e7e22', '79.2110', '2024-05-17 10:00:00');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
