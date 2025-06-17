@@ -29,8 +29,8 @@ Deployment is done via Docker Compose. Back-end uses default spring starter secu
 
 ### Running tests
 * Sample tests were created for each BE layer: controller, business, persistence (See `MeteringPointControllerTest.java`, `GetCustomerConsumptionDetailsTest.java`, `MeteringPointRepositoryAdapterTest.java`)
-* In the application root run `./gradlew test`. (NB! requires JAVA_21 on host)
-* Some tests were also created for front-end - requires npm and node (`10.9.2`, `v22.14.0` respectively were used during dev).
+* In the application root navigate to `./backend` and run `./gradlew test`. (NB! requires JAVA_21 on host)
+* Some tests were also created for front-end - requires npm and node (`10.9.2`, `v22.14.0` respectively were used during dev). Navigate to `./frontend` and run `npm run test`.
 
 ### Possible improvements
 * Negative energy prices were not taken into account - not sure about the business logic there.
