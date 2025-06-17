@@ -23,7 +23,7 @@ Deployment is done via Docker Compose. Back-end uses default spring starter secu
   username: foobar
   password: password
   ____________________
-  username: jandoe
+  username: janedoe
   password: password
   ```
 
